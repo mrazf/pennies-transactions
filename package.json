@@ -11,7 +11,7 @@
     "prestart": "npm run build",
     "start": "node ./build",
     "dev": "nodemon src --exec babel-node",
-    "build": "babel index.js auth.js --out-dir build"
+    "build": "babel src --out-dir build"
   },
   "dependencies": {
     "aws-sdk": "^2.28.0",
