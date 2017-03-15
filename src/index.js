@@ -19,6 +19,10 @@ admin.initializeApp({
   databaseURL: 'https://pennies-9cba3.firebaseio.com/'
 })
 
+app.get('/status', (req, res) => {
+  res.send('Looks like we\'re OK')
+})
+
 app.get('/transactions', function (req, res) {
   const token = req.headers.authorization.substring('Bearer: '.length)
 
