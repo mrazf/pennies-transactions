@@ -8,10 +8,12 @@ const get = require('./get')
 const app = express()
 app.use(cors())
 
-const secrets = require('/Users/rfa11/Google Drive/Projects/pennies-9cba3-firebase-adminsdk-px431-bf3d867223.json')
-
 admin.initializeApp({
-  credential: admin.credential.cert(secrets),
+  credential: admin.credential.cert({
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+    privateKey: process.env.FIREBASE_PRIVATE_KEY
+  }),
   databaseURL: 'https://pennies-9cba3.firebaseio.com/'
 })
 
