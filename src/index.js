@@ -37,6 +37,6 @@ app.get('/transactions', function (req, res) {
     })
 })
 
-app.listen(9001, function () {
+app.listen(app.get('port'), function () {
   console.log('Pennies Transactions is running on port', app.get('port'))
 })
