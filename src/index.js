@@ -6,6 +6,8 @@ const configurator = require('./configurator').get
 const get = require('./get')
 
 const app = express()
+
+app.set('port', (process.env.PORT || 9001))
 app.use(cors())
 
 admin.initializeApp({
@@ -32,5 +34,5 @@ app.get('/transactions', function (req, res) {
 })
 
 app.listen(9001, function () {
-  console.log('Example app listening on port 3000!')
+  console.log('Pennies Transactions is running on port', app.get('port'))
 })
