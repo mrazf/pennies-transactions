@@ -11,23 +11,47 @@ const dynamo = new AWS.DynamoDB.DocumentClient({
 const monzoClientId = process.env.MONZO_CLIENT_ID
 const monzoClientSecret = process.env.MONZO_CLIENT_SECRET
 
-module.exports = ({ uid }) => {
+const monzoTokenPromise = (uid) => {
   const params = { TableName: 'Pennies-MonzoApiToken', Key: { 'pennies_user_id': uid } }
 
   return new Promise((resolve, reject) => {
     dynamo.get(params, (err, data) => {
       if (err) reject(err)
 
-      resolve({
-        uid,
-        dynamo,
-        monzo: {
-          clientId: monzoClientId,
-          clientSecret: monzoClientSecret,
-          accountId: data['Item'].account_id,
-          token: data['Item']
-        }
-      })
+      resolve({ token: data['Item'] })
     })
+  })
+}
+
+const monzoAccountPromise = (uid) => {
+  console.log(uid)
+  const params = { TableName: 'Pennies-MonzoAccountId', Key: { 'pennies_user_id': uid } }
+
+  return new Promise((resolve, reject) => {
+    dynamo.get(params, (err, data) => {
+      console.log(err, data)
+      if (err) reject(err)
+
+      resolve({ accountId: data['Item'].account_id })
+    })
+  })
+}
+
+module.exports = ({ uid }) => {
+  return new Promise((resolve, reject) => {
+    return Promise.all([ monzoTokenPromise(uid), monzoAccountPromise(uid) ])
+      .then(values => {
+        resolve({
+          uid,
+          dynamo,
+          monzo: {
+            clientId: monzoClientId,
+            clientSecret: monzoClientSecret,
+            ...values[0],
+            ...values[1]
+          }
+        })
+      })
+      .catch(reject)
   })
 }

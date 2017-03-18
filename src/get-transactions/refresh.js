@@ -42,10 +42,11 @@ const save = ({ uid, monzo, dynamo }) => {
   })
 }
 
-module.exports = ({ monzo, dynamo }) => {
+module.exports = ({ uid, monzo, dynamo }) => {
   return new Promise((resolve, reject) => {
-    fresh(monzo, dynamo)
+    fresh({ uid, monzo, dynamo })
       .then(save)
+      .then(resolve)
       .catch(reject)
   })
 }

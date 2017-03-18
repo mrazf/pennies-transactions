@@ -27,7 +27,9 @@ app.get('/transactions', (req, res) => {
     .then(configurator)
     .then(config => getTransactions(config, req.query.from, req.query.to))
     .then(result => res.send(result))
-    .catch(err => res.send({ code: 503, err }))
+    .catch(err => {
+      res.send({ code: 503, err })
+    })
 })
 
 app.post('/transactions/:id', (req, res) => {

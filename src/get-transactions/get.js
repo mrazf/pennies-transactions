@@ -18,7 +18,7 @@ module.exports = (monzo, from, to) => {
 
       const response = JSON.parse(body)
       if (response.error) {
-        console.error(response.error)
+        console.error(response)
 
         return reject(response.error)
       }
