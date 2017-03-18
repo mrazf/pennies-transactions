@@ -4,6 +4,9 @@ build
 # Config
 .env
 
+# Mac
+.DS_Store
+
 # Logs
 logs
 *.log
