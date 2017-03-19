@@ -33,12 +33,7 @@ app.get('/transactions', (req, res) => {
 })
 
 app.post('/transactions/:id', (req, res) => {
-  const token = req.headers.authorization.substring('Bearer: '.length)
-
-  admin.auth().verifyIdToken(token)
-    .then(configurator)
-    .then(config => updateTransaction(config, req.params.id))
-    .then(result => res.send(result))
+  res.send(req.params.id)
 })
 
 app.get('/status', (req, res) => { res.send('Looks like we\'re OK') })

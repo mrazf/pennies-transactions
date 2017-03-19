@@ -29,7 +29,6 @@ const monzoAccountPromise = (uid) => {
 
   return new Promise((resolve, reject) => {
     dynamo.get(params, (err, data) => {
-      console.log(err, data)
       if (err) reject(err)
 
       resolve({ accountId: data['Item'].account_id })
