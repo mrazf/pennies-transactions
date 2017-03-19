@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+- '6'
+script: npm run lint
+after_success: npm run build
+cache: yarn
+deploy:
+  provider: heroku
+  api_key:
+    secure: MLiqbzJ1NqJCItAQt2U2aZNM2mP+fbPB6VgHZ5PFlBOnj46BPBuEx+oG6Sx9XHiQuJzGyGToLkCFGirmm9djonQvQlA6dsSf8Bs48gQ2xvbQQT4EPu4SG9eQPCUvLZUYhN/lvni+czN9lcCK8s2/YPm3nl9yYiejI6lvho0khSROPh8xAsUoY5Z6CrCuwS5MlSTAzixiLpR1erI+giTAL2BkLsbxUOWGEyZytSMrGnRcl4VNEx2yRLF1OwB6+99pbT2bWlR4w0O4Nfvlp542zF16S2BIqLbRpnR9FrFjt6F7lWlXXsTp4dCo77y9UXvT/ry6NLDMDwfnyB62eDtBsPlVGct9Aq/h4WC5eCtCmA0YMHkcCO2GrwGJlDK0y4Ha4a30G5jhW4eDEAlCPloxG6Jb/TZj/RQfYOifyCtwbMYyn4t+VFEpPtmA1dQFDuxguxAwy+BZ7zLyN2UTijXQdDFwO+9k66R5ZHB0dnhd9/LQnsmmLWY6p0xhsqXGRp696gPKXp5PeyZI2LXSOD2Z0DPPjjcVTAN8TkBd9NERrtFtJ9laBVL0xo+kSzlUL7NOhu7JT0cHvABRjWNdiZSvanlDF1auKUGagG7ZrR5r/smc6IuCVBhy3A9/CbkyPoudobxICpb2j1+yu1duty2x8ImSsESvM9NLf+kG8GR4WjM=
+  app: quiet-reaches-46541
+  on:
+    repo: mrazf/pennies-transactions
