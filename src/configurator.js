@@ -24,7 +24,6 @@ const monzoTokenPromise = (uid) => {
 }
 
 const monzoAccountPromise = (uid) => {
-  console.log(uid)
   const params = { TableName: 'Pennies-MonzoAccountId', Key: { 'pennies_user_id': uid } }
 
   return new Promise((resolve, reject) => {
@@ -36,7 +35,7 @@ const monzoAccountPromise = (uid) => {
   })
 }
 
-module.exports = ({ uid }) => {
+module.exports = (uid) => {
   return new Promise((resolve, reject) => {
     return Promise.all([ monzoTokenPromise(uid), monzoAccountPromise(uid) ])
       .then(values => {
